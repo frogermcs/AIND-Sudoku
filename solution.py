@@ -1,16 +1,19 @@
+
+# === Sudoku board confing ===
+
 rows = 'ABCDEFGHI'
 cols = '123456789'
 
-
 def cross(a, b):
     return [s + t for s in a for t in b]
-
 
 boxes = cross(rows, cols)
 
 row_units = [cross(r, cols) for r in rows]
 column_units = [cross(rows, c) for c in cols]
 square_units = [cross(rs, cs) for rs in ('ABC', 'DEF', 'GHI') for cs in ('123', '456', '789')]
+
+#Additional units used for Diagonal Sudoku
 diagonal1 = [[rows[a] + cols[a] for a in range(0, 9)]]
 diagonal2 = [[rows[8 - a] + cols[a] for a in range(0, 9)]]
 diagonals = diagonal1 + diagonal2
@@ -19,12 +22,24 @@ unitlist = row_units + column_units + square_units + diagonals
 units = dict((s, [u for u in unitlist if s in u]) for s in boxes)
 peers = dict((s, set(sum(units[s], [])) - set([s])) for s in boxes)
 
+# ===END OF Sudoku board confing ===
 
 def count_unsolved(values):
+    """
+    Count of unsolved boxes in Sudoku
+    Input: The sudoku in dictionary form
+    Output: Number of unsolved boxes in Sudoku (should be 0 when Sudoku is Solved)
+    """
     return len([box for box in values.keys() if len(values[box]) == 1])
 
 
 def count_values_chars(values):
+    """
+    Count overall number of characters in Sudoku. Value for solved 9x9 Sudoku should be 81.
+    Input: The sudoku in dictionary form
+    Output: The number of all characters in Sudoku (81 for Solved sudoku, more than 81 if there are still any
+     boxes with multiple digits.
+    """
     count = 0
     for box in boxes:
         count += len(values[box])
@@ -166,7 +181,7 @@ def only_choice(values):
 
 def reduce_puzzle(values):
     """
-    Iterate eliminate() and only_choice(). If at some point, there is a box with no available values, return False.
+    Iterate eliminate(), naked_twins() and only_choice(). If at some point, there is a box with no available values, return False.
     If the sudoku is solved, return the sudoku.
     If after an iteration of both functions, the sudoku remains the same, return the sudoku.
     Input: A sudoku in dictionary form.

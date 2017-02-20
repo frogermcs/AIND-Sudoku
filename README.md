@@ -2,12 +2,13 @@
 ## Introductory Project: Diagonal Sudoku Solver
 
 # Question 1 (Naked Twins)
-Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+Q: How do we use constraint propagation to solve the naked twins problem?
+A: Each row and column in Sudoku is checked to find Naked Twins (boxes with two-digits values which are equal in given unit). When Naked Twins exist, their digits are removed from other boxes in unit (row or column). Operation is repeated on whole Sudoku board as long as there are changes before and after Naked Twins values eliminate operation.
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+A: Same as before, for solving Diagonal Sudoku we perform constraint propagation by repeating strategies: Only Choice, Eliminate and Naked Twins values elimination (as long as there are changes in Sudoku board before and after operations). This time units used in Only Choice and Eliminate strategies (rows, columns, 9x9 squares) are extended by 2 additional ones: two diagonals. Diagonals are not changing implementation of strategies used in constraint propagation - they are just additional constraints used when checking box peers.
+
 
 ### Install
 
