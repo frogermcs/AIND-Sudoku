@@ -25,7 +25,7 @@ If not, please see how to download pygame [here](http://www.pygame.org/download.
 
 ### Code
 
-* `solutions.py` - You'll fill this in as part of your solution.
+* `solution.py` - You'll fill this in as part of your solution.
 * `solution_test.py` - Do not modify this. You can test your solution by running `python solution_test.py`.
 * `PySudoku.py` - Do not modify this. This is code for visualizing your solution.
 * `visualize.py` - Do not modify this. This is code for visualizing your solution.
@@ -34,6 +34,3 @@ If not, please see how to download pygame [here](http://www.pygame.org/download.
 
 To visualize your solution, please only assign values to the values_dict using the ```assign_values``` function provided in solution.py
 
-### Data
-
-The data consists of a text file of diagonal sudokus for you to solve.
